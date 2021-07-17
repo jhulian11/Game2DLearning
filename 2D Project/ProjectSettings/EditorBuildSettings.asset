@@ -59,4 +59,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Game/Level 2.2.unity
     guid: 7ef02088575a6204daf0905c6b8c8c22
+  - enabled: 1
+    path: Assets/Boss Room.unity
+    guid: 6384020fc9faf934ea4a73790008f84e
   m_configObjects: {}
