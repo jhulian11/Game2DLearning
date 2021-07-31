@@ -109596,7 +109596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aed8c0248eaf5c64ca1eab0f6e6f6ea5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanLoad: 0
+  CanLoad: 1
   AcidBoxPosition: {fileID: 1521765143}
   PushBox1: {fileID: 1647162111}
   Door2Open: 0
