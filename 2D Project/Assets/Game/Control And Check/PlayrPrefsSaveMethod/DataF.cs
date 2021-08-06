@@ -14,6 +14,9 @@ namespace Gamekit2D
         public bool Door2Open = false;
         public InteractOnTrigger2D SwitchDoor2 = null;
 
+        public bool door1IsOpen = false;
+        public GameObject door1 = null;
+
         public GameObject HealthParent = null;
         public List<bool> HealthPickBool = new List<bool>();
 
@@ -28,32 +31,37 @@ namespace Gamekit2D
         private void Start()
         {
            
-            ListMaker1(HealthParent,HealthPickBool);
-            ListMaker1(ColumnParent,ColumnDestroyBool);
-            ListMaker1(EnemiesParent,EnemiesBool);
+            SaveFunctionUtility.ListMaker1(HealthParent,HealthPickBool);
+            SaveFunctionUtility.ListMaker1(ColumnParent,ColumnDestroyBool);
+            SaveFunctionUtility.ListMaker1(EnemiesParent,EnemiesBool);
        
             InvokeRepeating(nameof(SaveData), 5f, 5f);
-
+            
             if (CanLoad == true)
             {
                 LoadData();
             }
+
+            if (door1IsOpen)
+            { Debug.Log("aaaa"); door1.SetActive(false); }
+
+            SaveFunctionUtility.Door1SetActiveOrNot(door1IsOpen,door1);
 
             if (Door2Open)
             {
                 SwitchDoor2.OnEnter.Invoke();
             }
 
-            ListLoaderModifierSceneOnStart(HealthParent, HealthPickBool);
-            ListLoaderModifierSceneOnStart(ColumnParent, ColumnDestroyBool);
-            ListLoaderModifierSceneOnStart(EnemiesParent, EnemiesBool);      
+            SaveFunctionUtility.ListLoaderModifierSceneOnStart(HealthParent, HealthPickBool);
+            SaveFunctionUtility.ListLoaderModifierSceneOnStart(ColumnParent, ColumnDestroyBool);
+            SaveFunctionUtility.ListLoaderModifierSceneOnStart(EnemiesParent, EnemiesBool);      
         }
 
         private void Update()
         {
-            ListModifier1(HealthParent, HealthPickBool);
-            ListModifier1(ColumnParent, ColumnDestroyBool);
-            ListModifier1(EnemiesParent, EnemiesBool);
+            SaveFunctionUtility.ListModifier1(HealthParent, HealthPickBool);
+            SaveFunctionUtility.ListModifier1(ColumnParent, ColumnDestroyBool);
+            SaveFunctionUtility.ListModifier1(EnemiesParent, EnemiesBool);
         }
         public void SaveData()
         {
@@ -63,15 +71,7 @@ namespace Gamekit2D
         public void LoadData()
         {
             DataPrefs data = SaveSystem.LoadData();
-
-            static void ListLoaderData(List<bool> data1, List<bool> Bool)
-            {
-                for (int i = 0; i < Bool.Count; i++)
-                {
-                    Bool[i] = data1[i];
-                }
-            }
-
+            
             //AcidBox
             Vector3 AcidBoxposition;
             AcidBoxposition.x = data.AcidBoxposition[0];
@@ -82,17 +82,20 @@ namespace Gamekit2D
             //Box1
             Vector3 Pushbox1;
             Pushbox1.x = data.Pushbox1[0];
-            Pushbox1.y = data.Pushbox1[1];
+            Pushbox1.y = data.Pushbox1[1] + 2;
             Pushbox1.z = data.Pushbox1[2];
             PushBox1.localPosition = Pushbox1;
 
             //Door2
             Door2Open = data.Door2open;
 
+            //Door1
+            door1IsOpen = data.door1Isopen;
+
             //Listas Health,Column,Enemies
-            ListLoaderData(data.HealthPickbool,HealthPickBool);
-            ListLoaderData(data.ColumnDestroybool,ColumnDestroyBool);
-            ListLoaderData(data.Enimiesbool,EnemiesBool);
+            SaveFunctionUtility.ListLoaderData(data.HealthPickbool,HealthPickBool);
+            SaveFunctionUtility.ListLoaderData(data.ColumnDestroybool,ColumnDestroyBool);
+            SaveFunctionUtility.ListLoaderData(data.Enimiesbool,EnemiesBool);
 
         }
         public void Door2Openner()
@@ -100,39 +103,10 @@ namespace Gamekit2D
             Door2Open = true;
         }
 
-         public void ListMaker1(GameObject Parent,List<bool> Bool)
-         {
-             for (int i = 0; i < Parent.transform.childCount; i++)
-             {
-                 Bool.Add(Parent);
-             }
-          }
-
-        public void ListModifier1(GameObject Parent, List<bool> Bool)
-        {
-            for (int i = 0; i < Bool.Count; i++)
-            {
-                if (Parent.transform.GetChild(i).transform.GetChild(0).gameObject.activeInHierarchy)
-                {
-                    Bool[i] = true;
-                }
-                else
-                {
-                    Bool[i] = false;
-                }
-            }
+        public void door1IsOpenChanger()
+        {            
+            door1IsOpen = true;
         }
-        public void ListLoaderModifierSceneOnStart(GameObject Parent, List<bool> Bool)
-        {
-            for (int i = 0; i < Bool.Count; i++)
-            {
-                if (!Bool[i])
-                {
-                    Parent.transform.GetChild(i).gameObject.SetActive(false);
-                }
-            }
-        }
-
 
     }
 }
