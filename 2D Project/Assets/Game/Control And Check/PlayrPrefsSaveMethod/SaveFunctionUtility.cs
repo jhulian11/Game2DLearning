@@ -9,17 +9,26 @@ public class SaveFunctionUtility : MonoBehaviour
     // public GameObject door1 = null;
 
     //Doors
+
+    //Door1
     public static void Door1SetDesactive(bool door1Open,GameObject door1)
     {
         if (door1Open)
         { Debug.Log("aaaa"); door1.SetActive(false); }       
     }
 
+    //Door2
     public static void Door3SetDesactive(bool door3Open, GameObject door3)
     {
         if (door3Open)
         { Debug.Log("333333"); door3.SetActive(false); }
     }
+
+    //FinalDoor
+
+
+
+
 
     // Lists
     public static void ListMaker1(GameObject Parent, List<bool> Bool)

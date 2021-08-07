@@ -48,18 +48,21 @@ EditorBuildSettings:
     path: Assets/Level1.unity
     guid: 44c385ec5d844154995944483c40ef8c
   - enabled: 1
-    path: Assets/Game/Level 2.unity
+    path: Assets/Game/Scenes/Level 2.unity
     guid: 9b8b7a2086f859e47a523fb8608814c1
   - enabled: 1
-    path: Assets/Game/Level 2.1.unity
+    path: Assets/Game/Scenes/Level 2.1.unity
     guid: 2062794466e33054b99e261c28d0630a
   - enabled: 1
-    path: Assets/Game/Level 2.2.unity
+    path: Assets/Game/Scenes/Level 2.2.unity
     guid: 7ef02088575a6204daf0905c6b8c8c22
   - enabled: 1
-    path: Assets/Game/Boss Room.unity
+    path: Assets/Game/Scenes/Boss Room.unity
     guid: 6384020fc9faf934ea4a73790008f84e
   - enabled: 1
     path: Assets/2DGamekit/Scenes/Zone4.unity
     guid: 5b0c2d9ddd151ba489db19a4fb634327
+  - enabled: 1
+    path: Assets/LooanWorks.unity
+    guid: eb0c7c61a52ef894c9ab72fc77893926
   m_configObjects: {}
