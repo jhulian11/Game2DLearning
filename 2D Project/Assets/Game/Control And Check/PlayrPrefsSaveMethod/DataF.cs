@@ -40,12 +40,7 @@ namespace Gamekit2D
             if (CanLoad == true)
             {
                 LoadData();
-            }
-
-            if (door1IsOpen)
-            { Debug.Log("aaaa"); door1.SetActive(false); }
-
-            SaveFunctionUtility.Door1SetActiveOrNot(door1IsOpen,door1);
+            }            
 
             if (Door2Open)
             {
@@ -54,11 +49,15 @@ namespace Gamekit2D
 
             SaveFunctionUtility.ListLoaderModifierSceneOnStart(HealthParent, HealthPickBool);
             SaveFunctionUtility.ListLoaderModifierSceneOnStart(ColumnParent, ColumnDestroyBool);
-            SaveFunctionUtility.ListLoaderModifierSceneOnStart(EnemiesParent, EnemiesBool);      
+            SaveFunctionUtility.ListLoaderModifierSceneOnStart(EnemiesParent, EnemiesBool);
+
+            StartCoroutine(Delay(0.01f));
+
         }
 
         private void Update()
         {
+
             SaveFunctionUtility.ListModifier1(HealthParent, HealthPickBool);
             SaveFunctionUtility.ListModifier1(ColumnParent, ColumnDestroyBool);
             SaveFunctionUtility.ListModifier1(EnemiesParent, EnemiesBool);
@@ -82,7 +81,7 @@ namespace Gamekit2D
             //Box1
             Vector3 Pushbox1;
             Pushbox1.x = data.Pushbox1[0];
-            Pushbox1.y = data.Pushbox1[1] + 2;
+            Pushbox1.y = data.Pushbox1[1];
             Pushbox1.z = data.Pushbox1[2];
             PushBox1.localPosition = Pushbox1;
 
@@ -105,8 +104,13 @@ namespace Gamekit2D
 
         public void door1IsOpenChanger()
         {            
-            door1IsOpen = true;
+          door1IsOpen = true;         
         }
+        IEnumerator Delay(float time)
+        {
+            yield return new WaitForSeconds(time);
 
+            SaveFunctionUtility.Door1SetDesactive(door1IsOpen, door1);
+        }
     }
 }

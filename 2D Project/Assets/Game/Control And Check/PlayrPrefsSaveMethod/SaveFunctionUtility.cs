@@ -9,11 +9,16 @@ public class SaveFunctionUtility : MonoBehaviour
     // public GameObject door1 = null;
 
     //Doors
-
-    public static void Door1SetActiveOrNot(bool door1Open,GameObject door1)
+    public static void Door1SetDesactive(bool door1Open,GameObject door1)
     {
         if (door1Open)
-            door1.SetActive(false);
+        { Debug.Log("aaaa"); door1.SetActive(false); }       
+    }
+
+    public static void Door1SetActive(bool door1Open,GameObject door1)
+    {
+        if(!door1Open)
+        { Debug.Log("nnnnn"); door1.SetActive(true); }
     }
     public static void Door2Openner(bool door2Open)
     {
