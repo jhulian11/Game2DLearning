@@ -11,6 +11,7 @@ namespace Gamekit2D
         public float[] Pushbox1;
         public bool Door2open;
         public bool door1Isopen;
+        public bool door3Isopen;
         public List<bool> HealthPickbool = new List<bool>();
         public List<bool> ColumnDestroybool = new List<bool>();
         public List<bool> Enimiesbool = new List<bool>();
@@ -29,8 +30,8 @@ namespace Gamekit2D
             Pushbox1[2] = data.PushBox1.localPosition.z;
 
             Door2open = data.Door2Open;
-
             door1Isopen = data.door1IsOpen;
+            door3Isopen = data.door3IsOpen;
 
             for (int i = 0; i < data.HealthPickBool.Count; i++)
             {

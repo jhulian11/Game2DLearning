@@ -15,14 +15,10 @@ public class SaveFunctionUtility : MonoBehaviour
         { Debug.Log("aaaa"); door1.SetActive(false); }       
     }
 
-    public static void Door1SetActive(bool door1Open,GameObject door1)
+    public static void Door3SetDesactive(bool door3Open, GameObject door3)
     {
-        if(!door1Open)
-        { Debug.Log("nnnnn"); door1.SetActive(true); }
-    }
-    public static void Door2Openner(bool door2Open)
-    {
-        door2Open = true;
+        if (door3Open)
+        { Debug.Log("333333"); door3.SetActive(false); }
     }
 
     // Lists

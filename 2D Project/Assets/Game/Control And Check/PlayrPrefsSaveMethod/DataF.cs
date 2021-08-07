@@ -17,6 +17,10 @@ namespace Gamekit2D
         public bool door1IsOpen = false;
         public GameObject door1 = null;
 
+        public bool door3IsOpen = false;
+        public GameObject door3 = null;
+        public GameObject door3Trigger = null;
+
         public GameObject HealthParent = null;
         public List<bool> HealthPickBool = new List<bool>();
 
@@ -57,10 +61,14 @@ namespace Gamekit2D
 
         private void Update()
         {
+            if (!door3Trigger.activeInHierarchy)
+                door3IsOpen = true;
 
             SaveFunctionUtility.ListModifier1(HealthParent, HealthPickBool);
             SaveFunctionUtility.ListModifier1(ColumnParent, ColumnDestroyBool);
             SaveFunctionUtility.ListModifier1(EnemiesParent, EnemiesBool);
+
+
         }
         public void SaveData()
         {
@@ -91,6 +99,9 @@ namespace Gamekit2D
             //Door1
             door1IsOpen = data.door1Isopen;
 
+            //Door3
+            door3IsOpen = data.door3Isopen;
+
             //Listas Health,Column,Enemies
             SaveFunctionUtility.ListLoaderData(data.HealthPickbool,HealthPickBool);
             SaveFunctionUtility.ListLoaderData(data.ColumnDestroybool,ColumnDestroyBool);
@@ -111,6 +122,7 @@ namespace Gamekit2D
             yield return new WaitForSeconds(time);
 
             SaveFunctionUtility.Door1SetDesactive(door1IsOpen, door1);
+            SaveFunctionUtility.Door3SetDesactive(door3IsOpen, door3);
         }
     }
 }

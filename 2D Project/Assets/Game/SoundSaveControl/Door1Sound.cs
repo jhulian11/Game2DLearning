@@ -9,6 +9,8 @@ public class Door1Sound : MonoBehaviour
     public AudioSource Door2Audio = null;
     public AudioSource SwitchAudio = null;
 
+    public AudioSource Door3Audio = null;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +19,9 @@ public class Door1Sound : MonoBehaviour
         Door2Audio.enabled = false;
         SwitchAudio.enabled = false;
 
-        IEnumerator PressPlateAudioON()
+        Door3Audio.enabled = false;
+
+        IEnumerator AudioON()
         {
             yield return new WaitForSeconds(1);
             PressPlateAudio.enabled = true;
@@ -25,9 +29,12 @@ public class Door1Sound : MonoBehaviour
             Door2Audio.enabled = true;
             SwitchAudio.enabled = true;
 
+            Door3Audio.enabled = true;
+
+
         }
 
-        StartCoroutine(PressPlateAudioON());
+        StartCoroutine(AudioON());
     }
 
     
